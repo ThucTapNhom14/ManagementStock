@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -118,7 +119,7 @@ public class ProductView {
 		lblHnBoHnh.setBounds(31, 332, 80, 20);
 		frame.getContentPane().add(lblHnBoHnh);
 
-		jDateChooser = new JDateChooser();
+		jDateChooser = new JDateChooser(new Date());
 		JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateChooser.getDateEditor();
 		editor.setEditable(false);
 		jDateChooser.setBounds(132, 327, 108, 25);
@@ -185,30 +186,13 @@ public class ProductView {
 		labelErrorPrice.setBounds(132, 363, 183, 20);
 		frame.getContentPane().add(labelErrorPrice);
 
-		// Product product= new Product();
-		// product.setId(textFieldID.getText());
-		// product.setName(textFieldName.getText());
-		// product.setBrand(textFieldBrand.getText());
-		// product.setCatogory(textField.getText());
-		// product.setPrice(textField_1.getText());
-		// product.setDescription(jTextAreaDe.getText());
-		// product.setGuarentydate(editor.getText());
-		//
-		// System.out.println(product.getBrand());
-		// System.out.println(product.getId());
-		// System.out.println(product.getPrice());
-		// System.out.println(product.getCatogory());
+
 
 		table = new JTable();
 		table.setFillsViewportHeight(true);
 		table.setSurrendersFocusOnKeystroke(true);
 		DefaultTableModel model = new DefaultTableModel(new Object[][] {
-				// {product.getId(),product.getName(),
-				// product.getBrand(),product.getCatogory(),product.getGuarentydate(),
-				// product.getPrice(),product.getDescription()}
-				// {
-				// textField.getText(),textField_1.getText()
-				// }
+		
 		}, new String[] { "STT", "M\u00E3 S\u1EA3n Ph\u1EA9m", "T\u00EAn S\u1EA3n Ph\u1EA9m", "Thương Hiệu",
 				"Lo\u1EA1i S\u1EA3n Ph\u1EA9m", "H\u1EA1n B\u1EA3o H\u00E0nh", "Gi\u00E1", "Chi Ti\u1EBFt" });
 		int count = 0;

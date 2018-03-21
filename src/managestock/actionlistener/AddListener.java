@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JTable;
@@ -56,6 +57,7 @@ public class AddListener implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e){
+		String date = new String();
 		Product product = new Product();
 		product.setId(jtextfieldID.getText().trim());
 		product.setPrice(jtextPrices.getText().trim());
@@ -63,8 +65,10 @@ public class AddListener implements ActionListener {
 		product.setCatogory(jtextCategories.getText());
 		product.setName(jtextNamePro.getText().trim());
 		SimpleDateFormat dcn = new SimpleDateFormat("yyyy-MM-dd");
-	    String date = dcn.format(jDateChooser.getDate() );
+		date = dcn.format(jDateChooser.getDate() );
+		
 	    product.setGuarentydate(date);
+		
 	    product.setDescription(jTextField.getText().trim());
 	    
 		ArrayList<String> listError = new ArrayList<>();
@@ -73,7 +77,7 @@ public class AddListener implements ActionListener {
 		try {
 		listError = validateAdminLogin.validateProduct(product);
 		if (listError.isEmpty()) {
-			productDaoImpl.addProduct(product);
+			//productDaoImpl.addProduct(product);
 			framePro.invalidate();
 			framePro.validate();
 			framePro.repaint();

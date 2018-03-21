@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//resources/config.properties=UTF-8
+encoding//resources/manage_error.properties=UTF-8
+encoding//src/managestock/actionlistener/LoginListener.java=UTF-8
+encoding//src/managestock/constants/Common.java=UTF-8
+encoding//src/managestock/dao/BaseDao.java=UTF-8
+encoding//src/managestock/dao/ProductDao.java=UTF-8
+encoding//src/managestock/dao/UserDao.java=UTF-8
+encoding//src/managestock/dao/impl/UserDaoImpl.java=UTF-8
+encoding//src/managestock/logic/TblProductLogic.java=UTF-8
+encoding//src/managestock/validate/ValidateAdminLogin.java=UTF-8
+encoding//src/managestock/view/ProductView.java=UTF-8

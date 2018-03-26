@@ -16,6 +16,7 @@ import managestock.actionlistener.BackListioner;
 import managestock.actionlistener.DeleteListener;
 import managestock.actionlistener.ModifyListener;
 import managestock.actionlistener.QuitListener;
+import managestock.actionlistener.SearchListener;
 import managestock.actionlistener.TableListener;
 import managestock.entity.Product;
 
@@ -78,6 +79,7 @@ public class ProductView {
 		JButton btnSearch = new JButton("Tìm Kiếm");
 		btnSearch.setBounds(1039, 26, 89, 25);
 		frame.getContentPane().add(btnSearch);
+		btnSearch.addActionListener(new SearchListener(textFieldSearch));
 
 		JLabel lblId = new JLabel("Mã");
 		lblId.setBounds(31, 89, 80, 20);

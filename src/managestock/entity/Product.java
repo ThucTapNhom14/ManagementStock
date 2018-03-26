@@ -80,6 +80,13 @@ public class Product {
 		this.brand = brand;
 		this.catogory = catogory;
 	}
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", expirydate=" + expirydate
+				+ ", guarentydate=" + guarentydate + ", price=" + price + ", brand=" + brand + ", catogory=" + catogory
+				+ "]";
+	}
+	
 	
 
 }

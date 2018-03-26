@@ -197,4 +197,55 @@ public class ProductDaoImpl extends BaseDaoImpl implements ProductDao{
 			closeConnection();
 		}
 	}
+	public ArrayList<Product> searchProduct(String textSearch) throws ClassNotFoundException, SQLException{
+		ArrayList<Product> listProduct= new ArrayList<>();
+		Product pro1= new Product();
+		listProduct.add(pro1);
+		Connection connection= null;
+		StringBuilder query= new StringBuilder();
+		ArrayList<String > arrayList=new ArrayList<String>();
+		arrayList.add("id");
+		arrayList.add("name");
+		arrayList.add("brand");
+		arrayList.add("catogory");
+		arrayList.add("price");
+		query.append("Select * from products ");
+		query.append("where ? like ? ;");
+		textSearch="%"+textSearch+"%";
+		try{
+			connection = getConnection();
+			PreparedStatement preparedStatement= connection.prepareStatement(query.toString());
+			preparedStatement.setString(2, textSearch);
+			for(int i=0;i<arrayList.size();i++){
+				preparedStatement.setString(1, arrayList.get(i));
+				ResultSet resultSet= preparedStatement.executeQuery();
+				while(resultSet.next()){
+					Product product = new Product();
+					product.setId(resultSet.getString("id"));
+					product.setName(resultSet.getString("name"));
+					product.setBrand(resultSet.getString("brand"));
+					product.setCatogory(resultSet.getString("catogory"));
+					product.setPrice(resultSet.getString("newprice"));
+					product.setGuarentydate(resultSet.getString("garentydate"));
+					product.setDescription(resultSet.getString("description"));
+					if(!listProduct.isEmpty()){
+						int count=0;
+						for(Product pr : listProduct){
+							if(product.getId().equals(pr.getId())){
+								count++;
+							}
+						}
+						if(count==0){
+							listProduct.add(product);
+						}
+					}
+					
+				}
+			}
+			listProduct.remove(0);
+		}finally {
+			closeConnection();
+		}
+		return listProduct;
+	}
 }

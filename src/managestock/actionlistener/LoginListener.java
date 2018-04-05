@@ -60,6 +60,7 @@ public class LoginListener implements ActionListener {
 			//jFrameLogin.setVisible(false);
 			username.setText("");
 			password.setText("");
+			//jFrameLogin.setVisible(false);
 			return;
 		} else {
 			// lấy lỗi từ list ra

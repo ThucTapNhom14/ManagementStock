@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
@@ -35,13 +36,13 @@ public class AddListener implements ActionListener {
 	private JTextField jtextPrices = null;
 	private JDateChooser jDateChooser = null;
 	private JTextArea jTextField = null;
+	private JFrame proView= null;
 	
-	private JFrame framePro;
 	private ArrayList<Product> arrayList;
 	private JTable table;
-	
+	private DefaultTableModel model;
 
-	 public AddListener(JTextField jtextfieldID, JTextField jtextfieldPrices, JTextField jTextFieldBrand, JTextField jTextFieldCatergories,JTextField jTextFieldName, JDateChooser jDateChooser, JTextArea jTextFieldDe, JFrame jFrame) {
+	 public AddListener(JTextField jtextfieldID, JTextField jtextfieldPrices, JTextField jTextFieldBrand, JTextField jTextFieldCatergories,JTextField jTextFieldName, JDateChooser jDateChooser, JTextArea jTextFieldDe, JFrame proView) {
 		this.jtextfieldID = jtextfieldID;
 		this.jtextPrices = jtextfieldPrices;
 		this.jtextBrands = jTextFieldBrand;
@@ -49,7 +50,7 @@ public class AddListener implements ActionListener {
 		this.jtextNamePro = jTextFieldName;
 		this.jDateChooser = jDateChooser;
 		this.jTextField = jTextFieldDe;
-		this.framePro=jFrame;
+		this.proView= proView;
 	}
 	/* (non-Javadoc)
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
@@ -74,10 +75,8 @@ public class AddListener implements ActionListener {
 		listError = validateAdminLogin.validateProduct(product);
 		if (listError.isEmpty()) {
 			productDaoImpl.addProduct(product);
-			framePro.invalidate();
-			framePro.validate();
-			framePro.repaint();
-			return;
+			proView.setVisible(false);
+			CategoriesController con = new CategoriesController();
 		} else {
 			for(String i : listError) {
 				System.out.println(i);

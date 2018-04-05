@@ -16,7 +16,10 @@ import managestock.actionlistener.BackListioner;
 import managestock.actionlistener.DeleteListener;
 import managestock.actionlistener.ModifyListener;
 import managestock.actionlistener.QuitListener;
+import managestock.actionlistener.SearchListener;
 import managestock.actionlistener.TableListener;
+import managestock.dao.impl.BrandDaoImpl;
+import managestock.entity.Brand;
 import managestock.entity.Product;
 
 import javax.swing.JScrollPane;
@@ -24,6 +27,7 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
@@ -77,6 +81,8 @@ public class ProductView {
 		JButton btnSearch = new JButton("Tìm Kiếm");
 		btnSearch.setBounds(1039, 26, 89, 25);
 		frame.getContentPane().add(btnSearch);
+		btnSearch.addActionListener(new SearchListener(textFieldSearch));
+		
 
 		JLabel lblId = new JLabel("Mã");
 		lblId.setBounds(31, 89, 80, 20);
@@ -99,11 +105,38 @@ public class ProductView {
 		JLabel lblThngHiu = new JLabel("Thương Hiệu");
 		lblThngHiu.setBounds(31, 210, 80, 20);
 		frame.getContentPane().add(lblThngHiu);
-
-		textFieldBrand = new JTextField();
-		textFieldBrand.setColumns(10);
-		textFieldBrand.setBounds(132, 205, 146, 25);
-		frame.getContentPane().add(textFieldBrand);
+		
+		JComboBox brand = new JComboBox();
+		BrandDaoImpl bra= new BrandDaoImpl();
+		
+		
+		ArrayList<Brand> brandList= new ArrayList<>();
+		
+		try {
+			brandList=bra.getListBrand();
+			int x= brandList.size();
+			String[] a= new String[x];
+			for(int i=0;i<x;i++){
+				a[i]=brandList.get(i).getName();
+			}
+			brand.setModel(new DefaultComboBoxModel(
+					///new String[] { "None", "Mã", "Tên", "Thương Hiệu", "Loại Sản Phẩm", "Hạn Bảo Hành", "Giá" }));
+					a));
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		brand.setBounds(132, 205, 146, 25);
+//		frame.getContentPane().add(comboBox);
+//		textFieldBrand = new JTextField();
+//		textFieldBrand.setColumns(10);
+//		textFieldBrand.setBounds(132, 205, 146, 25);
+		frame.getContentPane().add(brand);
 
 		JLabel lblLoi = new JLabel("Loại");
 		lblLoi.setBounds(31, 269, 80, 20);
